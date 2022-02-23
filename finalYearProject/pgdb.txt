@@ -1,0 +1,171 @@
+-- Table: public.evs_tbl_application
+
+-- DROP TABLE public.evs_tbl_application;
+
+CREATE TABLE public.evs_tbl_application
+(
+  userid text NOT NULL,
+  constituency text,
+  dobd text,
+  adpd text,
+  approvedstatus integer,
+  voterid text,
+  voted text,
+  photo text,
+  CONSTRAINT evs_tbl_application_pkey PRIMARY KEY (userid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.evs_tbl_application
+  OWNER TO postgres;
+
+  
+  2.
+  
+  
+  -- Table: public.evs_tbl_candidate
+
+-- DROP TABLE public.evs_tbl_candidate;
+
+CREATE TABLE public.evs_tbl_candidate
+(
+  candidateid integer NOT NULL DEFAULT nextval('evs_tbl_candidate_candidateid_seq'::regclass),
+  name text,
+  partyname text,
+  district text,
+  constituency text,
+  dateofbirth text,
+  mobileno text,
+  address text,
+  emailid text,
+  approve integer DEFAULT 0,
+  CONSTRAINT evs_tbl_candidate_pkey PRIMARY KEY (candidateid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.evs_tbl_candidate
+  OWNER TO postgres;
+
+  
+  3.
+  
+  
+  -- Table: public.evs_tbl_election
+
+-- DROP TABLE public.evs_tbl_election;
+
+CREATE TABLE public.evs_tbl_election
+(
+  electionid integer NOT NULL DEFAULT nextval('evs_tbl_election_electionid_seq'::regclass),
+  electiondate text NOT NULL,
+  constituency text,
+  countingdate text,
+  votercount integer,
+  CONSTRAINT evs_tbl_election_pkey PRIMARY KEY (electionid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.evs_tbl_election
+  OWNER TO postgres;
+
+  
+  4.
+  
+  
+  -- Table: public.evs_tbl_party
+
+-- DROP TABLE public.evs_tbl_party;
+
+CREATE TABLE public.evs_tbl_party
+(
+  partyid integer NOT NULL DEFAULT nextval('evs_tbl_party_partyid_seq'::regclass),
+  name text,
+  leader text,
+  symbol text,
+  email text,
+  phone text,
+  aboutus text,
+  approve integer DEFAULT 0,
+  CONSTRAINT evs_tbl_party_pkey PRIMARY KEY (partyid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.evs_tbl_party
+  OWNER TO postgres;
+
+  
+  5.
+  
+  
+  -- Table: public.evs_tbl_result
+
+-- DROP TABLE public.evs_tbl_result;
+
+CREATE TABLE public.evs_tbl_result
+(
+  resultid integer NOT NULL DEFAULT nextval('evs_tbl_result_resultid_seq'::regclass),
+  constituency text NOT NULL,
+  partyname text,
+  candidatename text,
+  votecount integer,
+  CONSTRAINT evs_tbl_result_pkey PRIMARY KEY (resultid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.evs_tbl_result
+  OWNER TO postgres;
+
+  6.
+  
+  
+  -- Table: public.evs_tbl_user_credentials
+
+-- DROP TABLE public.evs_tbl_user_credentials;
+
+CREATE TABLE public.evs_tbl_user_credentials
+(
+  userid integer NOT NULL DEFAULT nextval('evs_tbl_user_credentials_userid_seq'::regclass),
+  password text,
+  usertype text,
+  CONSTRAINT evs_tbl_user_credentials_pkey PRIMARY KEY (userid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.evs_tbl_user_credentials
+  OWNER TO postgres;
+
+  
+  7..
+  
+  
+  -- Table: public.evs_tbl_user_profile
+
+-- DROP TABLE public.evs_tbl_user_profile;
+
+CREATE TABLE public.evs_tbl_user_profile
+(
+  userid integer NOT NULL,
+  firstname text,
+  lastname text,
+  dateofbirth text,
+  gender text,
+  street text,
+  location text,
+  city text,
+  state text,
+  pincode text,
+  mobileno text,
+  emailid text,
+  CONSTRAINT evs_tbl_user_profile_pkey PRIMARY KEY (userid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.evs_tbl_user_profile
+  OWNER TO postgres;
